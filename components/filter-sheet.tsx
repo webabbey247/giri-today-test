@@ -1,59 +1,59 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { setWidth } from '@/helper/config';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 
-type FilterSheetProps = {
-  categories: string[];
-  selectedCategory: string;
-  onCategoryChange: (category: string) => void;
-  priceRange: [number, number];
+interface filterSheetProps {
+ payload: {
+     priceRange: [number, number];
   onPriceChange: (range: [number, number]) => void;
-};
+ }
+}
 
-export default function FilterSheet(props: FilterSheetProps
-) {
- const { categories, selectedCategory, onCategoryChange, priceRange, onPriceChange } = props;
+export default function FilterSheet(props: filterSheetProps) {
+    const {  priceRange, onPriceChange } = props.payload 
+  // Local state for real-time updates
+  const [localRange, setLocalRange] = useState<[number, number]>(priceRange);
 
+    useEffect(() => {
+  setLocalRange(priceRange);
+    }, [priceRange])
   return (
     <ActionSheet
       id="filter-sheet"
       gestureEnabled={true}
+      closable={true}
       initialSnapIndex={0}
-      snapPoints={[50, 80, 100]}
-      containerStyle={{ padding: 16 }}>
-      <View className="gap-4 p-4">
-        {/* Categories */}
-        <Text className="text-lg font-bold text-black">Categories</Text>
-        <View className="flex-row flex-wrap gap-2">
-          <View className="flex-row flex-wrap gap-2">
-            {[...categories].map((cat) => (
-              <TouchableOpacity
-                key={cat}
-                onPress={() => onCategoryChange(cat)}
-                className={`${ selectedCategory === cat ? 'bg-primary' : 'bg-secondary'} h-10 min-w-[100px] items-center justify-center rounded-[29px] px-4`}>
-                <Text className="font-raleway-500 text-sm font-medium capitalize tracking-normal text-white">
-                  {cat}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-
+      snapPoints={[100]}
+      containerStyle={{ paddingHorizontal: 16 }}>
+      <View className="w-full gap-4 p-4">
         {/* Price Range */}
-        <Text className="mt-4 text-lg font-bold text-black">Price Range</Text>
-        <Text className="text-sm text-gray-600">${priceRange[0]} - ${priceRange[1]}</Text>
-        {/* <Slider
-          minimumValue={0}
-          maximumValue={1000}i
-          step={10}
-            value={priceRange[1]}
-            onValueChange={(val) => onPriceChange([priceRange[0], val])}
-          minimumTrackTintColor="#FF6B00"
-          maximumTrackTintColor="#ccc"
-        /> */}
+        <View className="w-full flex-col gap-4">
+          <Text className="font-raleway-600 text-lg font-semibold text-black">Price Range</Text>
+          <Text className="text-base font-medium font-raleway-500 text-black">
+            ${localRange[0].toFixed()} - ${localRange[1].toFixed()}
+          </Text>
+
+          <MultiSlider
+            values={priceRange}
+            min={priceRange[0]}
+            max={priceRange[1]}
+            step={1}
+            onValuesChange={(values) => setLocalRange(values as [number, number])}
+            onValuesChangeFinish={(values) => onPriceChange(values as [number, number])}
+            trackStyle={{ height: 6, borderRadius: 3 }}
+            sliderLength={setWidth(100) - 56}
+            selectedStyle={{ backgroundColor: '#020644' }}
+            markerStyle={{
+              height: 20,
+              width: 20,
+              borderRadius: 10,
+              backgroundColor: '#020644',
+            }}
+          />
+        </View>
       </View>
-      <TouchableOpacity className="h-[52px] w-full items-center justify-center rounded-lg bg-secondary">
-        <Text className="text-base font-semibold text-white">Apply Filters</Text>
-      </TouchableOpacity>
     </ActionSheet>
   );
 }

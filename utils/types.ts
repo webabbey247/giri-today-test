@@ -45,3 +45,10 @@ export interface CartState {
   cartList: CartItem[];
   cartTotalAmount: number;
 }
+
+export interface ResetFilterActionButtonProps {
+    onPressAction: () => void;
+    min: number;
+    max: number;
+}
+

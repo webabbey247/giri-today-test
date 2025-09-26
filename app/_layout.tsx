@@ -7,14 +7,15 @@ import {
   useFonts,
 } from '@expo-google-fonts/raleway';
 import { Stack } from 'expo-router';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, LogBox, View } from 'react-native';
 import { SheetProvider } from 'react-native-actions-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 import '../global.css';
 import "../sheet";
 
-export default function Layout() {
+export default function RootLayout() {
+   LogBox.ignoreAllLogs(true);
   // Load fonts
   const [fontsLoaded] = useFonts({
     Raleway_400Regular,

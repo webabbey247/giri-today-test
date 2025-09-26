@@ -5,9 +5,7 @@ import { useDispatch } from 'react-redux';
 import { removeFromCart, updateCartQty } from '../redux/cartSlice';
 
 import { CartItem } from '@/utils/types';
-import { useEffect } from 'react';
 import CartActionButton from './ui/cart-action-buttons';
-
 
 
 const ProductCartItem = ({ item }: {item: CartItem}) => {
@@ -30,9 +28,6 @@ const ProductCartItem = ({ item }: {item: CartItem}) => {
     dispatch(removeFromCart(item.id));
   };
 
-    useEffect(() => {
-    Image.prefetch(item?.image);
-  }, []);
   return (
     <View
       key={item.id}

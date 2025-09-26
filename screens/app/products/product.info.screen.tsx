@@ -36,9 +36,6 @@ const ProductInfoScreen = () => {
     );
   }
 
-
-
-
   const increaseCartQty = () => setCartQty((prev) => prev + 1);
 
   const decreaseCartQty = () => setCartQty((prev) => (prev > 1 ? prev - 1 : prev));
@@ -70,12 +67,7 @@ const ProductInfoScreen = () => {
       {/* Header */}
 <View className='flex-col gap-4 bg-white h-full px-4'>
     <CustomHeading title="Product Information" showBackPress showCart />
-        {/* <Pressable
-          onPress={router.back}
-          className="h-10 w-10 mt-4 items-center justify-center rounded-full border border-secondary/50 bg-secondary">
-          <Feather name="chevron-left" size={20} color="#ffffff" />
-        </Pressable> */}
-
+    
       <ScrollView showsVerticalScrollIndicator={false} className='bg-white'>
         {/* Product Image */}
         <ImageBackground
