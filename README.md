@@ -25,11 +25,11 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Assumptions you made
+## Assumptions made
 1. The main functionalities include product listing, single product preview, adding items to the cart, viewing the cart, and proceeding to checkout.  
 2. No API calls were made; product data was retrieved from a local FakeApi and stored locally.  
 3. A filtering system for product listings has been implemented, allowing users to filter by category and price.  
 
-## What you’d improve with more time
+## What i’d improve with more time
 
 1: Add more filter functionalities when sorting products
