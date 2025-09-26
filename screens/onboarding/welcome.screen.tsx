@@ -52,6 +52,6 @@ const WelcomeScreen = () => {
 export default WelcomeScreen;
 const customStyles = {
   splashContainer: `flex-col bg-secondary flex-1 items-center justify-center`,
-  splashImgLogo: 'h-20 w-20 object-contain mb-4',
+  splashImgLogo: 'h-[55px] w-[61px] object-contain mb-4',
   splashActivityLoader: `h-20 w-20`,
 };
