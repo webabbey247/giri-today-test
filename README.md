@@ -28,7 +28,8 @@ You can start developing by editing the files inside the **app** directory. This
 ## Assumptions made
 1. The main functionalities include product listing, single product preview, adding items to the cart, viewing the cart, and proceeding to checkout.  
 2. No API calls were made; product data was retrieved from a local FakeApi and stored locally.  
-3. A filtering system for product listings has been implemented, allowing users to filter by category and price.  
+3. A filtering system for product listings has been implemented, allowing users to filter by category and price. 
+4. Since products where stored locally, error and loading state condtions were overlooked.
 
 ## What i’d improve with more time
 

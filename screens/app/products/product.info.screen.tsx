@@ -67,8 +67,8 @@ const ProductInfoScreen = () => {
       {/* Header */}
 <View className='flex-col gap-4 bg-white h-full px-4'>
     <CustomHeading title="Product Information" showBackPress showCart />
-    
-      <ScrollView showsVerticalScrollIndicator={false} className='bg-white'>
+
+      <ScrollView showsVerticalScrollIndicator={false} className='bg-white' contentContainerClassName='pb-10'>
         {/* Product Image */}
         <ImageBackground
           source={{ uri: data.image }}
